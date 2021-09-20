@@ -1,0 +1,132 @@
+.admin_profile_container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background: rgb(59, 49, 59);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Profile image */
+
+.admin_profile_container .admin_profile_image_container {
+  height: 70%;
+  width: 20%;
+  box-shadow: 0 10px 20px -10px black;
+  border: #ffffff 1px solid;
+  border-radius: 3px;
+  margin-right: 5px;
+}
+
+.admin_profile_container .profile_image {
+  height: 45%;
+  width: 85%;
+  margin: 50px auto;
+}
+
+.admin_profile_container .profile_image span {
+  background: -webkit-linear-gradient(#db00ff, rgb(198, 135, 135, 0.5));
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 100px;
+}
+
+.admin_profile_container .profile_image .admin_username {
+  font-size: 20px;
+  color: #afafaf;
+  font-weight: bolder;
+  text-align: center;
+  letter-spacing: 1px;
+  margin: 50px 0;
+  width: 100%;
+  word-wrap: break-word;
+}
+
+/* Details */
+
+.admin_profile_container .admin_details_form {
+  height: 70%;
+  width: 30%;
+  position: relative;
+  box-shadow: 0 10px 20px -10px black;
+  border-radius: 3px;
+  border: #ffffff 1px solid;
+  margin-left: 5px;
+  padding: 20px 0;
+}
+
+.admin_profile_container .admin_details_form .options_container {
+  position: absolute;
+  right: -240px;
+  top: 0px;
+  width: 15vw;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  animation: show 0.3s ease-in-out;
+}
+
+.admin_profile_container .admin_details_form .options_container button {
+  background: rgba(175, 175, 175, 30%);
+  height: 50px;
+  margin-bottom: 5px;
+  border: none;
+  border-radius: 3px;
+  color: #ffffff;
+}
+
+.admin_profile_container .admin_details_form .options_container button:hover {
+  color: #db00ff;
+}
+
+@keyframes show {
+  0% {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+.admin_profile_container .admin_details_form .options {
+  text-align: end;
+  position: absolute;
+  top: -15%;
+  right: -25%;
+}
+
+.admin_profile_container .admin_details_form .options button {
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.admin_profile_container .admin_details_form .options button i {
+  padding: 10px;
+  margin: 0 5px;
+  color: #ffffff;
+}
+
+.admin_profile_container .admin_details_container {
+  width: 80%;
+  margin: 50px auto;
+  position: relative;
+  border-radius: 3px;
+  padding: 15px;
+  word-wrap: break-word;
+}
+
+.admin_profile_container .admin_details_container .label {
+  position: absolute;
+  top: -40%;
+  color: #db00ff;
+}
+
+.admin_profile_container .admin_details_container .details {
+  font-size: 20px;
+  color: #afafaf;
+}

@@ -1,0 +1,184 @@
+.change_details_container {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(44, 42, 42);
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.change_details_container .form {
+  height: 75%;
+  width: 50%;
+}
+
+.change_details_container .form .res_message {
+  text-align: center;
+  margin: auto;
+}
+
+.change_details_container .form .res_message .res_error {
+  background: rgba(255, 0, 0, 10%);
+  padding: 10px 0;
+  width: 50%;
+  margin: auto;
+  border-radius: 3px;
+}
+
+.change_details_container .form .res_message .res_success {
+  background: rgba(81, 255, 0, 0.1);
+  padding: 10px 0;
+  width: 50%;
+  margin: auto;
+  border-radius: 3px;
+}
+
+.change_details_container .form .details_title {
+  color: #7a9ee5;
+  font-size: 35px;
+  font-weight: bolder;
+  letter-spacing: 2px;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.change_details_container .form .details_input_container {
+  width: 50%;
+  margin: 30px auto;
+  position: relative;
+  border: 1px solid #5f5f5f;
+  border-radius: 10px;
+}
+
+.change_details_container .form .details_btn_container {
+  width: 50%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.change_details_container .form .details_btn_container button[type="button"] {
+  background: #e57a7a;
+  height: 50px;
+  width: 48%;
+  border: none;
+  border-radius: 3px;
+  color: #ffffff;
+}
+
+.change_details_container .form .details_btn_container button[type="submit"] {
+  background: #7a9ee5;
+  height: 50px;
+  width: 48%;
+  border: none;
+  border-radius: 3px;
+  color: #ffffff;
+}
+
+/* Disable update */
+
+.change_details_container .form .disable_update_details {
+  width: 50%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.change_details_container .form .disable_update_details button[type="button"] {
+  background: #e57a7a;
+  height: 50px;
+  width: 48%;
+  border: none;
+  border-radius: 3px;
+  color: #ffffff;
+}
+
+.change_details_container .form .disable_update_details button[type="submit"] {
+  background: #7a9ee5;
+  height: 50px;
+  width: 48%;
+  border: none;
+  border-radius: 3px;
+  color: #ffffff;
+}
+
+.change_details_container .form .details_input_container .change_details_label {
+  color: white;
+  position: absolute;
+  top: -10%;
+  margin-left: 15px;
+  transform: translateY(-50%);
+  color: #afafaf;
+  padding: 0 5px;
+  background: rgb(44, 42, 42);
+}
+
+.change_details_container .form .details_input_container input {
+  border: none;
+  background: none;
+  padding: 15px;
+  width: 100%;
+  color: #7a9ee5;
+  outline: none;
+}
+
+/* Mobile View */
+
+@media (max-width: 480px) {
+  .change_details_container {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(44, 42, 42);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .change_details_container .form {
+    height: 75%;
+    width: 100%;
+  }
+
+  .change_details_container .form .details_input_container {
+    width: 90%;
+    margin: 30px auto;
+    position: relative;
+    border: 1px solid #5f5f5f;
+    border-radius: 10px;
+  }
+
+  .change_details_container .form .details_btn_container {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .change_details_container .form .disable_update_details {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .change_details_container .form .details_title {
+    color: #7a9ee5;
+    font-size: 20px;
+    font-weight: bolder;
+    letter-spacing: 2px;
+    text-align: center;
+    padding: 20px 0;
+  }
+}

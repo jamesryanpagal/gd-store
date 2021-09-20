@@ -1,0 +1,92 @@
+.success_page_container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+}
+
+.success_page_container .success_page {
+  height: 100%;
+  width: 50%;
+}
+
+.success_page .success_sent_email_text {
+  text-align: center;
+  color: green;
+}
+
+/* image */
+
+.success_page_container .success_page .success_page_img_container {
+  height: 50%;
+  width: 50%;
+  margin: 100px auto 0 auto;
+}
+
+.success_page_container .success_page .success_page_img_container img {
+  height: 100%;
+  width: 100%;
+}
+
+/* Button */
+
+.success_page_container .success_page .success_page_button {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.success_page_container .success_page .success_page_button button {
+  border: none;
+  background: #db00ff;
+  padding: 10px 50px;
+  border-radius: 3px;
+  color: #eeeeee;
+  text-decoration: none;
+  box-shadow: 0 5px 20px -10px #444444;
+}
+
+/* Disable on sent email */
+
+.success_page_container .success_page .disableOnSendEmail {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.success_page_container .success_page .disableOnSendEmail button {
+  border: none;
+  background: #db00ff;
+  padding: 10px 85px;
+  border-radius: 3px;
+  color: #eeeeee;
+  text-decoration: none;
+  box-shadow: 0 5px 20px -10px #444444;
+  opacity: 0.3;
+}
+
+.success_page_container
+  .success_page
+  .disableOnSendEmail
+  button
+  .spinner_loading_container {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+/* Mobile view */
+
+@media (max-width: 480px) {
+  .success_page_container .success_page {
+    height: 100%;
+    width: 100%;
+  }
+
+  .success_page_container .success_page .success_page_img_container {
+    height: 50%;
+    width: 90%;
+    margin: 100px auto 0 auto;
+  }
+}

@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css2?family=Cabin&display=swap");
+
+.dashboard_container {
+  width: 85%;
+  height: 90vh;
+  margin: auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Dashboard Text */
+.dashboard_container .dashboard_text {
+  height: 50%;
+  position: relative;
+}
+
+.dashboard_container .dashboard_text .first_text {
+  font-size: 60px;
+  font-weight: bolder;
+  font-family: "Cabin", sans-serif;
+  margin: 0;
+  padding: 0px;
+  color: #5f5f5f;
+}
+
+.dashboard_container .dashboard_text .first_text span {
+  background: -webkit-linear-gradient(#db00ff, rgb(198, 135, 135, 0.5));
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dashboard_container .dashboard_text .second_text {
+  color: #c697ce;
+  margin: 0;
+  font-size: 30px;
+}
+
+.dashboard_container .dashboard_text a {
+  text-decoration: none;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 50px;
+  position: absolute;
+  bottom: 0;
+  background: #d45aff;
+  color: #ffffff;
+  box-shadow: 0 5px 15px -10px black;
+}
+
+/* Dashboard Image */
+.dashboard_container .dashboard_image {
+  height: 70%;
+  width: 37%;
+  position: relative;
+}
+
+.dashboard_container .dashboard_image .dashboard_image_text {
+  display: none;
+}
+
+.dashboard_container .dashboard_image img {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.dashboard_container svg {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  top: 40%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+}
+
+/* Mobile view */
+
+@media (max-width: 480px) {
+  .dashboard_container {
+    width: 100%;
+    position: relative;
+  }
+  .dashboard_container .dashboard_text {
+    display: none;
+  }
+
+  .dashboard_container .dashboard_image {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+  }
+
+  .dashboard_container .dashboard_image img {
+    width: 70%;
+    height: 45%;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .dashboard_container .dashboard_image .dashboard_image_text {
+    display: block;
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 18vh;
+    text-align: center;
+  }
+
+  .dashboard_container .dashboard_image .dashboard_image_text p {
+    margin: 5px;
+    font-size: 20px;
+    font-weight: bolder;
+    color: #5f5f5f;
+    position: relative;
+  }
+
+  .dashboard_container .dashboard_image .dashboard_image_text a {
+    border-radius: 50px;
+    padding: 10px 45px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    text-decoration: none;
+    background: none;
+    border: #db00ff solid 1px;
+    color: #db00ff;
+    box-shadow: 0 10px 20px -15px black;
+  }
+
+  .dashboard_container .dashboard_image svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 35%;
+    left: 55%;
+  }
+}

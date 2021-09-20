@@ -1,0 +1,180 @@
+.admin_navbar {
+  padding-top: 10px;
+  background: #231a25;
+  height: 100%;
+  width: 5vw;
+  top: 0%;
+  left: 0%;
+  position: absolute;
+  z-index: 9;
+  transition: 0.3s;
+}
+
+.admin_navbar:hover {
+  width: 11vw;
+}
+
+.admin_navbar:hover .admin_dashboard .admin_dashboard_link a span {
+  width: 5vw;
+}
+.admin_navbar:hover .admin_products .admin_products_link a span {
+  width: 5vw;
+}
+
+.admin_navbar:hover .admin_profile .adminIcon_Container {
+  height: 15vh;
+}
+
+.admin_navbar:hover .admin_profile .adminIcon_Container span {
+  font-size: 50px;
+}
+
+.admin_navbar:hover .admin_profile .admin_signout {
+  transition: 0.3s;
+  width: 80%;
+}
+
+.admin_navbar:hover .admin_profile .viewAdmin {
+  transition: 0.3s;
+  width: 35px;
+}
+
+.admin_profile {
+  color: white;
+  height: 30vh;
+  border-radius: 0.25rem;
+  width: 85%;
+  margin: auto;
+  position: relative;
+}
+
+.admin_profile .adminIcon_Container {
+  background: none;
+  width: 80%;
+  height: 6.5vh;
+  border-radius: 50%;
+  margin: auto;
+  margin-top: 20px;
+  border: 1px white solid;
+  padding: 5px;
+  transition: 0.3s;
+}
+
+.admin_profile .adminIcon_Container span {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+  background: -webkit-linear-gradient(#db00ff, rgb(198, 135, 135, 0.5));
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.admin_profile .adminIcon_Container img {
+  min-height: 10%;
+  min-width: 10%;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.admin_profile h5 {
+  padding: 5px 0;
+  text-align: center;
+  word-wrap: break-word;
+  font-size: 15px;
+  border: red solid;
+  display: none;
+}
+
+.admin_profile h5 {
+  padding: 5px 0;
+  text-align: center;
+  word-wrap: break-word;
+  font-size: 15px;
+  border: red solid;
+  display: none;
+}
+
+.admin_profile .admin_signout {
+  text-align: center;
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  background: rgba(95, 95, 95, 50%);
+  border-radius: 3px;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  padding: 5px 0;
+  width: 0;
+  overflow: hidden;
+}
+
+.admin_profile .viewAdmin {
+  position: absolute;
+  top: 40%;
+  left: 60%;
+  border: none;
+  width: 0;
+  overflow: hidden;
+}
+
+.admin_profile .viewAdmin a {
+  border-radius: 50%;
+  padding: 0px 3px 0px 7px;
+  background: #7a9ee5;
+  color: black;
+}
+
+.admin_Links {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 15vh;
+  justify-content: space-around;
+}
+
+.admin_dashboard .admin_dashboard_link a {
+  display: flex;
+  align-items: center;
+  padding: 5px 20px;
+  text-decoration: none;
+  color: white;
+  font-size: 13px;
+  border: transparent solid;
+}
+
+.admin_dashboard .admin_dashboard_link a img {
+  height: 30px;
+  margin-right: 15px;
+}
+
+.admin_products .admin_products_link a img {
+  height: 30px;
+  margin-right: 15px;
+}
+
+.admin_products .admin_products_link a {
+  display: flex;
+  align-items: center;
+  padding: 5px 20px;
+  text-decoration: none;
+  color: white;
+  font-size: 13px;
+  border: transparent solid;
+}
+
+.admin_dashboard .admin_dashboard_link a span {
+  width: 0vw;
+  overflow: hidden;
+}
+
+.admin_products .admin_products_link a span {
+  width: 0vw;
+  overflow: hidden;
+}
+
+.admin_Links a:hover {
+  background: #322635;
+}

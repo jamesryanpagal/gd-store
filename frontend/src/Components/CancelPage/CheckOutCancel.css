@@ -1,0 +1,75 @@
+.check_out_cancel_container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.check_out_cancel_container .check_out_cancel {
+  height: 70%;
+  width: 30%;
+}
+
+/* Image */
+
+.check_out_cancel_container
+  .check_out_cancel
+  .check_out_cancel_image_container {
+  height: 80%;
+  width: 100%;
+}
+
+.check_out_cancel_container
+  .check_out_cancel
+  .check_out_cancel_image_container
+  img {
+  height: 100%;
+  width: 100%;
+}
+
+/* Text */
+
+.check_out_cancel_container .check_out_cancel .check_out_cancel_text_container {
+  text-align: center;
+}
+
+.check_out_cancel_container
+  .check_out_cancel
+  .check_out_cancel_text_container
+  span {
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+/* Link */
+.check_out_cancel_container .check_out_cancel .check_out_cancel_link_container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.check_out_cancel_container
+  .check_out_cancel
+  .check_out_cancel_link_container
+  button {
+  padding: 10px 50px;
+  text-decoration: none;
+  color: #eeeeee;
+  background: #db00ff;
+  border-radius: 3px;
+  box-shadow: 0 5px 20px -10px black;
+  border: none;
+}
+
+/* Mobile View */
+
+@media (max-width: 480px) {
+  .check_out_cancel_container .check_out_cancel {
+    height: 70%;
+    width: 100%;
+  }
+}

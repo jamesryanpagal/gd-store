@@ -1,0 +1,26 @@
+.profile_container {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  background: rgb(230, 230, 230);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile_container span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.profile_container img {
+  min-height: 10%;
+  min-width: 10%;
+  max-height: 100%;
+  max-width: 100%;
+  border-radius: 50%;
+}
