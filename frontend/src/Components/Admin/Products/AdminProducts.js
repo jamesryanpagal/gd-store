@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { axiosConfig } from "../../ReusableFunction/AxiosConfig/AxiosConfig";
+import axiosConfig from "../../ReusableFunction/AxiosConfig/AxiosConfig";
 
 //images
 import noProducts from "../../PublicImages/noProducts.png";

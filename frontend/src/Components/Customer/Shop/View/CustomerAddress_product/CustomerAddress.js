@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { axiosConfig } from "../../../../ReusableFunction/AxiosConfig/AxiosConfig";
+import axiosConfig from "../../../../ReusableFunction/AxiosConfig/AxiosConfig";
 
 //redux actions
 import { setUserAddressActions } from "../../../../../Redux/Actions/user_Actions";

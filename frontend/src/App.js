@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { axiosConfig } from "./Components/ReusableFunction/AxiosConfig/AxiosConfig";
+import axiosConfig from "./Components/ReusableFunction/AxiosConfig/AxiosConfig";
 
 //redux
 import { getProductsActions } from "./Redux/Actions/products_Actions";

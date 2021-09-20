@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { GoogleLogin } from "react-google-login";
 import { useDispatch, useSelector } from "react-redux";
-import { axiosConfig } from "../ReusableFunction/AxiosConfig/AxiosConfig";
+import axiosConfig from "../ReusableFunction/AxiosConfig/AxiosConfig";
 
 //redux actions
 import { userTokenActions } from "../../Redux/Actions/user_Actions";

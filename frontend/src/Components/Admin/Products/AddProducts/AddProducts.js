@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { axiosConfig } from "../../../ReusableFunction/AxiosConfig/AxiosConfig";
+import axiosConfig from "../../../ReusableFunction/AxiosConfig/AxiosConfig";
 
 //images
 import uploadlogo from "../../../PublicImages/upload.png";

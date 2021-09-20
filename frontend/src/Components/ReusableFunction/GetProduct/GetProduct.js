@@ -1,4 +1,4 @@
-import { axiosConfig } from "../AxiosConfig/AxiosConfig";
+import axiosConfig from "../AxiosConfig/AxiosConfig";
 
 const getProduct = async (id) => {
   try {

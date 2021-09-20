@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { axiosConfig } from "../../ReusableFunction/AxiosConfig/AxiosConfig";
+import axiosConfig from "../../ReusableFunction/AxiosConfig/AxiosConfig";
 
 //redux actions
 import { removeUserTokenActions } from "../../../Redux/Actions/user_Actions";

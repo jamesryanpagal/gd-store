@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { axiosConfig } from "../AxiosConfig/AxiosConfig";
+import axiosConfig from "../AxiosConfig/AxiosConfig";
 
 //loader
 import Spinner from "../../SmallSpinner/Spinner";
