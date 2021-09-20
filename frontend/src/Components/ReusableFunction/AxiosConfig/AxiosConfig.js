@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosConfig = axios.create({
-  baseURL: "https://gd-store-mern.herokuapp.com/",
+  baseURL: `http://localhost:${process.env.PORT}/`,
 });
 
 export default axiosConfig;

@@ -23,8 +23,8 @@ const productsCheckout = async (req, res) => {
           quantity: products.product_quantity,
         };
       }),
-      success_url: "https://pagsecommerce.herokuapp.com/checkoutsuccess",
-      cancel_url: "https://pagsecommerce.herokuapp.com/checkoutcancel",
+      success_url: "https://gd-store-mern.herokuapp.com/checkoutsuccess",
+      cancel_url: "https://gd-store-mern.herokuapp.com/checkoutcancel",
     });
     res.json(stripeCheckout.url);
   } catch (error) {
@@ -52,9 +52,9 @@ const productCheckout = async (req, res) => {
         },
       ],
       success_url:
-        "https://pagsecommerce.herokuapp.com/checkoutsuccessproduct/" +
+        "https://gd-store-mern.herokuapp.com/checkoutsuccessproduct/" +
         checkoutProduct._id,
-      cancel_url: "https://pagsecommerce.herokuapp.com/checkoutcancel",
+      cancel_url: "https://gd-store-mern.herokuapp.com/checkoutcancel",
     });
     res.json(stripeProductCheckout.url);
   } catch (error) {
