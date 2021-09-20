@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import axiosConfig from "../../ReusableFunction/AxiosConfig/AxiosConfig";
+import { axiosConfig } from "../../ReusableFunction/AxiosConfig/AxiosConfig";
 
 //redux actions
 import { userHistoryActions } from "../../../Redux/Actions/user_Actions";

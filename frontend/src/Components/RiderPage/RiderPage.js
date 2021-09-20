@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
-import axiosConfig from "../ReusableFunction/AxiosConfig/AxiosConfig";
+import { axiosConfig } from "../ReusableFunction/AxiosConfig/AxiosConfig";
 
 //redux actions
 import { removeUserTokenActions } from "../../Redux/Actions/user_Actions";

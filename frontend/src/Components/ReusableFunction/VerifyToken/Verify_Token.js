@@ -1,4 +1,4 @@
-import axiosConfig from "../AxiosConfig/AxiosConfig";
+import { axiosConfig } from "../AxiosConfig/AxiosConfig";
 
 const verifyToken = async (token) => {
   const config = {

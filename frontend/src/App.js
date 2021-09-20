@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import axiosConfig from "./Components/ReusableFunction/AxiosConfig/AxiosConfig";
+import { axiosConfig } from "./Components/ReusableFunction/AxiosConfig/AxiosConfig";
 
 //redux
 import { getProductsActions } from "./Redux/Actions/products_Actions";
@@ -31,7 +31,6 @@ function App() {
   useEffect(() => {
     const getProductCategories = async () => {
       const { data } = await axiosConfig.get("/products/getProducts");
-
       data.map((p) =>
         dispatch(
           getProductCategoriesActions({
@@ -53,7 +52,6 @@ function App() {
       try {
         if (mounted) {
           const { data } = await axiosConfig.get("/products/getProducts");
-
           data.map((product) => dispatch(getProductsActions(product)));
         }
       } catch (error) {
