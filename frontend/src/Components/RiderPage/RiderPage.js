@@ -113,22 +113,7 @@ const RiderPage = () => {
   const { riders } = useSelector((state) => state.Riders);
   const { sales } = useSelector((state) => state.Sales);
 
-  //Get all riders from database
-
-  useEffect(() => {
-    const get_riders = async () => {
-      const { data } = await axiosConfig.get("/riders/getRiders");
-      const filter_rider = await data.filter((r) => r.user_type === "Rider");
-      filter_rider.map((r) => dispatch(ridersActions(r)));
-    };
-    get_riders();
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (riderId) {
-      setRiderDetails({ ...riders.find((r) => r._id === riderId) });
-    }
-  }, [riders, riderId]);
+  // get rider details
 
   useEffect(() => {
     const getUser = async () => {
@@ -142,6 +127,25 @@ const RiderPage = () => {
       setRiderId("");
     };
   }, [userToken]);
+
+  //Get all riders from database
+
+  useEffect(() => {
+    const get_riders = async () => {
+      const { data } = await axiosConfig.get("/riders/getRiders");
+      const filter_rider = await data.filter((r) => r.user_type === "Rider");
+      filter_rider.map((r) => dispatch(ridersActions(r)));
+    };
+    get_riders();
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (riderId) {
+      if (riders) {
+        setRiderDetails({ ...riders.find((r) => r._id === riderId) });
+      }
+    }
+  }, [riders, riderId]);
 
   const handleRiderLogout = () => {
     dispatch(removeUserTokenActions());
