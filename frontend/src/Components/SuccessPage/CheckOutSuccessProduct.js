@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import io from "socket.io-client";
 import axiosConfig from "../ReusableFunction/AxiosConfig/AxiosConfig";
 
 //redux actions
@@ -8,7 +9,6 @@ import {
   checkoutOnProcessActions,
   checkoutSuccessActions,
 } from "../../Redux/Actions/checkout_Actions";
-import { incomeActions } from "../../Redux/Actions/sales_Actions";
 import { updateProductStockActions } from "../../Redux/Actions/products_Actions";
 
 //functions
@@ -20,6 +20,9 @@ import successimage from "../PublicImages/success.png";
 
 //css
 import "./CheckOutSuccessProduct.css";
+
+//socket
+const socket = io.connect("https://gd-store-mern.herokuapp.com");
 
 const CheckOutSuccessProduct = ({ history }) => {
   const [loading, setLoading] = useState(false);
@@ -62,23 +65,20 @@ const CheckOutSuccessProduct = ({ history }) => {
         )
       );
       const verifyUser = await verifyToken(userToken);
-
       const product = await product_list.find((p) => p._id === id);
-
       const reqData = {
         product,
         date,
         name: verifyUser.data.fullname,
         email: verifyUser.data.email,
       };
-
       const { data } = await axiosConfig.post(
         "/checkout/sendProductEmail",
         reqData
       );
 
       //add to sales
-      await axiosConfig.post("/sales/productsales", {
+      socket.emit("addToSales", {
         cart: [
           {
             ...reqData.product,
@@ -93,8 +93,8 @@ const CheckOutSuccessProduct = ({ history }) => {
         },
       });
 
-      //add to income
-      dispatch(incomeActions(reqData.product.product_price));
+      // add to income
+      socket.emit("productPurchased", product.product_price);
 
       //create purchase history
       await axiosConfig.post("/usershistory/createUserHistory", {
@@ -107,7 +107,6 @@ const CheckOutSuccessProduct = ({ history }) => {
         ],
         id: verifyUser.data._id,
       });
-
       setLoading(false);
       history.push("/");
       dispatch(checkoutSuccessActions(data));

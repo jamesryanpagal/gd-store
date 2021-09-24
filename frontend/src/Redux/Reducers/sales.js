@@ -3,9 +3,7 @@ export const salesReducers = (state = { sales: [], income: 0 }, action) => {
     case "PRODUCT_SALES":
       const { productSales } = action.payload;
 
-      const salesExist = state.sales.find(
-        (p) => p.sales_id === productSales.sales_id
-      );
+      const salesExist = state.sales.find((p) => p._id === productSales._id);
 
       if (!salesExist) {
         return {
@@ -68,11 +66,11 @@ export const salesReducers = (state = { sales: [], income: 0 }, action) => {
       };
 
     case "INCOME":
-      const { productIncome } = action.payload;
+      const { purchasedTotal } = action.payload;
 
       return {
         ...state,
-        income: (state.income += productIncome),
+        income: purchasedTotal,
       };
 
     default:

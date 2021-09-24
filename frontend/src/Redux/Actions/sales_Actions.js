@@ -38,11 +38,11 @@ export const cancelSalesStatus = (cancelItemId) => (dispatch) => {
   });
 };
 
-export const incomeActions = (productIncome) => (dispatch) => {
+export const totalIncomeActions = (purchasedTotal) => (dispatch) => {
   dispatch({
     type: "INCOME",
     payload: {
-      productIncome,
+      purchasedTotal,
     },
   });
 };

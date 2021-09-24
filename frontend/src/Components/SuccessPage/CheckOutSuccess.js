@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import io from "socket.io-client";
 import axiosConfig from "../ReusableFunction/AxiosConfig/AxiosConfig";
 
 //redux actions
@@ -8,7 +9,6 @@ import {
   checkoutOnProcessActions,
 } from "../../Redux/Actions/checkout_Actions";
 import { updateProductsStockActions } from "../../Redux/Actions/products_Actions";
-import { incomeActions } from "../../Redux/Actions/sales_Actions";
 
 //functions
 import verifyToken from "../ReusableFunction/VerifyToken/Verify_Token";
@@ -21,6 +21,9 @@ import Spinner from "../SmallSpinner/Spinner";
 
 //css
 import "./CheckOutSuccess.css";
+
+//socket
+const socket = io.connect("https://gd-store-mern.herokuapp.com");
 
 const CheckOutSuccess = ({ history }) => {
   const [loading, setLoading] = useState(false);
@@ -53,7 +56,11 @@ const CheckOutSuccess = ({ history }) => {
           productUpdateStock_id: p._id,
           totalStock: p.product_stock - p.product_quantity,
         };
-        await axiosConfig.patch("/products/updateProductStock", updateData);
+        // await axiosConfig.patch("/products/updateProductStock", updateData);
+        socket.emit("updateStock", {
+          id: updateData.productUpdateStock_id,
+          stockUpdate: updateData.totalStock,
+        });
         dispatch(
           updateProductsStockActions(
             updateData.totalStock,
@@ -73,8 +80,9 @@ const CheckOutSuccess = ({ history }) => {
         "/checkout/sendProductsEmail",
         reqData
       );
+
       //add to sales
-      await axiosConfig.post("/sales/productsales", {
+      socket.emit("addToSales", {
         cart: reqData.cart,
         user: {
           name: reqData.name,
@@ -82,8 +90,10 @@ const CheckOutSuccess = ({ history }) => {
           address: customer_address,
         },
       });
-      //add to income
-      dispatch(incomeActions(total));
+
+      // add to income
+      socket.emit("productsPurchased", total);
+
       //create purchase history
       await axiosConfig.post("/usershistory/createUserHistory", {
         cart: reqData.cart,

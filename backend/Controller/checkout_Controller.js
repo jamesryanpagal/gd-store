@@ -1,8 +1,12 @@
 const stripe = require("stripe")(process.env.STRIPE_TEST_KEY);
-const sgMail = require("@sendgrid/mail");
-sgMail.setApiKey(
-  "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"
-);
+const nodemailer = require("nodemailer");
+const transporter = nodemailer.createTransport({
+  service: "hotmail",
+  auth: {
+    user: process.env.MAIL_USER,
+    pass: process.env.MAIL_PASS,
+  },
+});
 
 const productsCheckout = async (req, res) => {
   const { CheckoutProducts } = req.body;
@@ -65,86 +69,94 @@ const productCheckout = async (req, res) => {
 const sendProductEmail = async (req, res) => {
   const { name, email, date, product } = req.body;
   try {
+    // create message
     const msg = {
+      from: process.env.MAIL_USER,
       to: email,
-      from: process.env.MAIL_FROM,
       subject: "Purchase receipt",
       text: "Thank you for trusting Pag's Gadget Store",
       html: `
-        <section style="border: #afafaf 1px solid; min-height: 550px; width: 300px; background-color: white; margin: auto; font-family: Arial, Helvetica, sans-serif; padding: 10px; border-radius: 3px">
+            <section style="border: #afafaf 1px solid; min-height: 550px; width: 300px; background-color: white; margin: auto; font-family: Arial, Helvetica, sans-serif; padding: 10px; border-radius: 3px">
 
-  	<section style="text-align: center; padding: 20px; font-size: 20px; font-weight: bolder; color: #db00ff">
-      	<span>Pag's</span>
-      </section>
+      	<section style="text-align: center; padding: 20px; font-size: 20px; font-weight: bolder; color: #db00ff">
+          	<span>Pag's</span>
+          </section>
 
-      <section style="background: #626262; padding: 10px; border-radius: 3px; text-align: center; color: white">
-      	<span>Purchase Receipt</span>
-      </section>
+          <section style="background: #626262; padding: 10px; border-radius: 3px; text-align: center; color: white">
+          	<span>Purchase Receipt</span>
+          </section>
 
-      <section style="padding: 20px 5px 0 5px;">
-      	<section>Recipient Details</section>
-      </section>
+          <section style="padding: 20px 5px 0 5px;">
+          	<section>Recipient Details</section>
+          </section>
 
-      <section style="background: #d2d2d2; margin-top: 2px; padding: 5px; border-radius: 3px">
-      	<section>Date:</section>
-          <section>${date}</section>
-      </section>
+          <section style="background: #d2d2d2; margin-top: 2px; padding: 5px; border-radius: 3px">
+          	<section>Date:</section>
+              <section>${date}</section>
+          </section>
 
-      <section style="background: #d2d2d2; margin-top: 2px; padding: 5px; border-radius: 3px">
-      	<section>Name:</section>
-          <section>${name}</section>
-      </section>
+          <section style="background: #d2d2d2; margin-top: 2px; padding: 5px; border-radius: 3px">
+          	<section>Name:</section>
+              <section>${name}</section>
+          </section>
 
-      <section style="background: #d2d2d2; margin-top: 2px; padding: 5px; border-radius: 3px">
-      	<section>Email:</section>
-          <section>${email}</section>
-      </section>
+          <section style="background: #d2d2d2; margin-top: 2px; padding: 5px; border-radius: 3px">
+          	<section>Email:</section>
+              <section>${email}</section>
+          </section>
 
-      <section style="padding: 20px 5px 0 5px;">
-      	<section>Order Details</section>
-      </section>
+          <section style="padding: 20px 5px 0 5px;">
+          	<section>Order Details</section>
+          </section>
 
-      <table style="width: 100%; margin-top: 2px">
-      	<thead>
-          	<tr style="background: #626262; color: #ffffff">
-              	<th style="padding: 5px">Product</th>
-              	<th style="padding: 5px">Price</th>
-              	<th style="padding: 5px">Quantity</th>
-              	<th style="padding: 5px">Total</th>
-              </tr>
-          </thead>
-          <tbody>
-                <tr style="text-align: center; background: #d2d2d2;">
-              	<td style="width: 120px; padding: 5px; word-break: break-all">${
-                  product.product_name
-                }</td>
-              	<td style="padding: 5px">${product.product_price
+          <table style="width: 100%; margin-top: 2px">
+          	<thead>
+              	<tr style="background: #626262; color: #ffffff">
+                  	<th style="padding: 5px">Product</th>
+                  	<th style="padding: 5px">Price</th>
+                  	<th style="padding: 5px">Quantity</th>
+                  	<th style="padding: 5px">Total</th>
+                  </tr>
+              </thead>
+              <tbody>
+                    <tr style="text-align: center; background: #d2d2d2;">
+                  	<td style="width: 120px; padding: 5px; word-break: break-all">${
+                      product.product_name
+                    }</td>
+                  	<td style="padding: 5px">${product.product_price
+                      .toString()
+                      .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}</td>
+                  	<td style="padding: 5px">1</td>
+                  	<td style="padding: 5px">${product.product_price
+                      .toString()
+                      .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}</td>
+                  </tr>
+              </tbody>
+          </table>
+
+          <section style="background: #626262; padding: 5px; color: #ffffff; margin-top: 10px; text-align: end; border-radius: 3px">
+          	<span>
+              	Total:
+              </span>
+              <span>
+              	$${product.product_price
                   .toString()
-                  .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}</td>
-              	<td style="padding: 5px">1</td>
-              	<td style="padding: 5px">${product.product_price
-                  .toString()
-                  .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}</td>
-              </tr>
-          </tbody>
-      </table>
+                  .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}
+              </span>
+          </section>
 
-      <section style="background: #626262; padding: 5px; color: #ffffff; margin-top: 10px; text-align: end; border-radius: 3px">
-      	<span>
-          	Total:
-          </span>
-          <span>
-          	$${product.product_price
-              .toString()
-              .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}
-          </span>
       </section>
-
-  </section>
-        `,
+            `,
     };
-    await sgMail.send(msg);
-    res.json(true);
+
+    // send email
+    transporter.sendMail(msg, (err, info) => {
+      if (err) {
+        res.json(err);
+        return;
+      }
+      res.json(true);
+    });
   } catch (error) {
     res.json(error.message);
   }
@@ -153,9 +165,10 @@ const sendProductEmail = async (req, res) => {
 const sendProductsEmail = async (req, res) => {
   const { cart, total, date, name, email } = req.body;
   try {
+    // create message
     const msg = {
+      from: process.env.MAIL_USER,
       to: email,
-      from: process.env.MAIL_FROM,
       subject: "Purchase receipt",
       text: "Thank you for trusting Pag's Gadget Store",
       html: `
@@ -236,8 +249,15 @@ const sendProductsEmail = async (req, res) => {
 </section>
       `,
     };
-    await sgMail.send(msg);
-    res.json(true);
+
+    // send email
+    transporter.sendMail(msg, (err, info) => {
+      if (err) {
+        res.json(err);
+        return;
+      }
+      res.json(true);
+    });
   } catch (error) {
     res.json(error.message);
   }

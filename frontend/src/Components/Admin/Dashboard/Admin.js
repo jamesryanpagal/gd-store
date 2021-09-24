@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import NumberFormat from "react-number-format";
-import axiosConfig from "../../ReusableFunction/AxiosConfig/AxiosConfig";
+import io from "socket.io-client";
 
 //redux actions
 import {
   productSalesActions,
   deliveringSalesStatus,
+  totalIncomeActions,
 } from "../../../Redux/Actions/sales_Actions";
 import {
   addDeliveritem,
@@ -22,6 +23,9 @@ import emptysales from "../../PublicImages/noProducts.png";
 
 //css
 import "./Admin.css";
+
+//socket
+const socket = io.connect("https://gd-store-mern.herokuapp.com");
 
 const RiderList = ({
   setShowRidersList,
@@ -84,14 +88,14 @@ const RecentList = ({ details, setDeliverId, setShowRidersList }) => {
       <td>{details.email}</td>
       <td>{details.address}</td>
       <td>
-        {details.purchased.map((p) => {
-          return <section key={p.product_id}>{p.product_name}</section>;
+        {details.purchased.map((p, index) => {
+          return <section key={index}>{p.product_name}</section>;
         })}
       </td>
       <td>
-        {details.purchased.map((p) => {
+        {details.purchased.map((p, index) => {
           return (
-            <section key={p.product_id}>
+            <section key={index}>
               <i className="fas fa-dollar-sign"></i>
               {p.product_price}
             </section>
@@ -99,14 +103,14 @@ const RecentList = ({ details, setDeliverId, setShowRidersList }) => {
         })}
       </td>
       <td>
-        {details.purchased.map((p) => {
-          return <section key={p.product_id}>{p.product_quantity}</section>;
+        {details.purchased.map((p, index) => {
+          return <section key={index}>{p.product_quantity}</section>;
         })}
       </td>
       <td>
-        {details.purchased.map((p) => {
+        {details.purchased.map((p, index) => {
           return (
-            <section key={p.product_id}>
+            <section key={index}>
               <i className="fas fa-dollar-sign"></i>
               {p.product_total}
             </section>
@@ -186,6 +190,20 @@ const Admin = () => {
     setTotalDelivered(sales.filter((s) => s.status === "Delivered"));
   }, [sales]);
 
+  //productPurchased income
+  useEffect(() => {
+    socket.on("productIncome", (price) => {
+      dispatch(totalIncomeActions(price.income));
+    });
+  }, [dispatch]);
+
+  //productsPurchased income
+  useEffect(() => {
+    socket.on("productsIncome", (totalPrice) => {
+      dispatch(totalIncomeActions(totalPrice.income));
+    });
+  }, [dispatch]);
+
   useEffect(() => {
     if (resMessage) {
       setTimeout(() => {
@@ -194,16 +212,11 @@ const Admin = () => {
     }
   }, [resMessage, dispatch]);
 
+  // NEW SALES
   useEffect(() => {
-    const getSales = async () => {
-      try {
-        const { data } = await axiosConfig.get("/sales/getSales");
-        data.map((p) => dispatch(productSalesActions(p)));
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getSales();
+    socket.on("newSales", (newSales) => {
+      dispatch(productSalesActions(newSales));
+    });
   }, [dispatch]);
 
   const handleFilterSales = (e) => {
@@ -264,7 +277,7 @@ const Admin = () => {
             <p>Income</p>
             <section className="income_status">
               <span>
-                <i className="fas fa-dollar-sign"></i>{" "}
+                <i className="fas fa-dollar-sign"></i>
                 <NumberFormat
                   value={income}
                   thousandSeparator={true}
@@ -317,9 +330,9 @@ const Admin = () => {
               </thead>
               <tbody>
                 {salesContainer &&
-                  salesContainer.map((p) => (
+                  salesContainer.map((p, index) => (
                     <RecentList
-                      key={p.sales_id}
+                      key={index}
                       details={p}
                       setDeliverId={setDeliverId}
                       setShowRidersList={setShowRidersList}
